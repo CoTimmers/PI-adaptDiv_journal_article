@@ -20,6 +20,32 @@ class DB_connection():
     def save_table_in_db(self,df,table_name):
         df.to_sql(table_name,self.connection, if_exists='replace',index=False)
 
+    def get_users_by_RS(self):
+        recommendation_systems = ['SVD','MMR','PI-adaptDiv','EDC']
+        users_by_RS = dict()
+        for rs in recommendation_systems:
+            query = f'''SELECT id FROM user 
+                       WHERE experience_RS = '{rs}'
+                       AND q8_answer IS NOT NULL'''
+            users = list(self.select(query)['id'])
+            users_by_RS[rs] = users
+        return users_by_RS
+    
+    def get_user_ratings(self, user_id):
+        experience_history = self.select(f"SELECT * FROM user WHERE id='{user_id}'")["history_experience"][0].split(" ")
+        ids = ', '.join(f"'{video_id}'" for video_id in experience_history)
+        
+        query = f"SELECT rating FROM rating WHERE user_id = '{user_id}' AND video_id in ({ids});"
+        ratings_experiment = list(self.select(query)["rating"])
+
+        query = f"SELECT rating FROM rating WHERE user_id = '{user_id}' AND video_id NOT IN ({ids});"
+        ratings_training = list(self.select(query)["rating"])
+        return ratings_training, ratings_experiment
+
+    def execute_query(self, query):
+        self.connection.execute(query)
+        self.connection.commit()
+
     def close(self):
         self.connection.close()
 
