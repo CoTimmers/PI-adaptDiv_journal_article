@@ -175,6 +175,7 @@ cython_debug/
 
 
 database.db
-
+database_2.db
+.DS_Store
 
 

@@ -17,6 +17,8 @@ simulated_behaviors = pd.read_csv(local_path + "/offline_study/ebnerd/data/simul
 UserItem_Matrix     = pd.read_csv(local_path + "/offline_study/ebnerd/data/UserItem_Matrix.csv")
 users               = pd.read_csv(local_path + "/offline_study/ebnerd/data/users.csv")
 
+#users['user_id'] = users['user_id'].astype(int)
+
 
 # Save data to database
 db_connection = DB_connection()
