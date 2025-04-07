@@ -1,7 +1,7 @@
 from math import log2
-from DB_connection import DB_connection
+from DB_connection import db_connection
 
-db_connection = DB_connection()
+
 categories = list(db_connection.select('SELECT DISTINCT category FROM articles')["category"])
 
 
@@ -52,4 +52,6 @@ def shannon_entropy(distribution, normalize = True):
 def compute_user_shanon_entropy(user_history, rolling_window_size=1000):
     distribution = compute_user_history_distribution(user_history,rolling_window_size,categories)
     return shannon_entropy(distribution)
+
+
     

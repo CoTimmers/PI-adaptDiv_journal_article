@@ -1,9 +1,8 @@
 import numpy as np
 from scipy.sparse import coo_matrix
 from tqdm import tqdm
-from DB_connection import DB_connection
+from DB_connection import db_connection
 
-db_connection = DB_connection()
 
 def build_user_item_matrix(filter_active_users=False, history_len=15, nbr_interaction=15):
     # Load active users if specified
@@ -46,3 +45,4 @@ def build_user_item_matrix(filter_active_users=False, history_len=15, nbr_intera
     vals = np.ones(len(rows))
     return (coo_matrix((np.array(vals), (np.array(rows), np.array(cols)))),
             dic_int_to_userID, dic_userID_to_int, dic_int_to_newsID, dic_newsID_to_int)
+

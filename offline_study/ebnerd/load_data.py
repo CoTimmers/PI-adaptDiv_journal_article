@@ -2,7 +2,7 @@ import os
 
 import pandas as pd
 
-from DB_connection import DB_connection
+from DB_connection import db_connection
 
 
 # Load data 
@@ -21,7 +21,6 @@ users               = pd.read_csv(local_path + "/offline_study/ebnerd/data/users
 
 
 # Save data to database
-db_connection = DB_connection()
 db_connection.save_df(articles, 'articles')
 db_connection.save_df(behaviors, 'behaviors')
 db_connection.save_df(parameters_adapt, 'parameters_adapt')
@@ -29,7 +28,6 @@ db_connection.save_df(parameters_mmr, 'parameters_mmr')
 db_connection.save_df(simulated_behaviors, 'simulated_behaviors')
 db_connection.save_df(UserItem_Matrix, 'UserItem_Matrix')
 db_connection.save_df(users, 'users')
-db_connection.close()
 
 
 

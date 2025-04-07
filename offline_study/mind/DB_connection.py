@@ -2,17 +2,15 @@ import os
 from dotenv import load_dotenv
 load_dotenv()
 
-import sqlite3
+import sqlite3 
 import pandas as pd
 
 
 local_path =  os.getenv("LOCAL_PATH")
 
-
-
 class DB_connection():
     def __init__(self):
-        self.connection = sqlite3.connect( local_path+ "/offline_study/ebnerd/data/database.db", timeout=10)
+        self.connection = sqlite3.connect(local_path+ "/offline_study/mind/data/database.db", timeout=10)
     
     def select(self,query):
         return pd.read_sql_query(query, self.connection)
@@ -23,24 +21,29 @@ class DB_connection():
         result = cursor.fetchone()
         return result[0]
     
+    def drop_table(self,table_name):
+        delete_bool = input(f"Are you sure you want to delete the table {table_name} ? type yes and enter to continue the process ")
+        if delete_bool == 'yes':
+            cursor = self.connection.cursor()
+            query  = "DROP TABLE IF EXISTS " + table_name
+            cursor.execute(query)
+            print('Table '+ table_name + ' has been deleted')
+
     def save_df(self,df,table_name):
         df.to_sql(table_name, self.connection, if_exists="replace", index =False)
 
-    def get_active_users(self,len_history, min_nbr_interactions):
+    def get_active_users(self,min_history_len, min_nbr_interactions):
         cursor = self.connection.cursor()
-        query = f'''SELECT b.user_id
-                    FROM behaviors b
-                    JOIN users u ON b.user_id = u.user_id
-                    WHERE LENGTH(u.initial_history) >  {len_history*8} 
-                    GROUP BY b.user_id
-                    HAVING COUNT(b.user_id) > {min_nbr_interactions}; '''
-        
-        cursor.execute(query)
+        query = '''SELECT UserID FROM behaviors
+                    WHERE LENGTH(History)> ?
+                    GROUP BY UserID
+                    HAVING COUNT(UserID) >?;'''
+        cursor.execute(query,(min_history_len*7,min_nbr_interactions,))
         
         active_users = cursor.fetchall()
         active_users_list = [active_users[i][0] for i in range(len(active_users))]
 
-        return active_users_list 
+        return active_users_list
     
     def create_simulated_baseline_behaviors_table(self):
         cursor = self.connection.cursor()
@@ -130,7 +133,6 @@ class DB_connection():
                      :K_i,
                      :K_d
                     )'''
-
         cursor = self.connection.cursor()
         try:
             cursor.execute(query, values)
@@ -162,10 +164,8 @@ class DB_connection():
         except Exception as e:
             self.connection.rollback()
             raise e
-        
-        
+
+
+    
     def close(self):
         self.connection.close()
-
-
-db_connection = DB_connection()
