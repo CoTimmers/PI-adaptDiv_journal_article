@@ -7,15 +7,14 @@ import pandas as pd
 from DB_connection import DB_connection
 
 
-local_path =  os.getenv("LOCAL_PATH")
-
+print('Load data for online_study database')
 
 
 # Load the data for experiment phase
-rating_df   = pd.read_csv(local_path + "/online_study/data/experiment_phase/rating.csv")
-user_df     = pd.read_csv(local_path + "/online_study/data/experiment_phase/user.csv")
-video_df    = pd.read_csv(local_path + "/online_study/data/experiment_phase/video.csv")
-behavior_df = pd.read_csv(local_path + "/online_study/data/experiment_phase/behavior.csv")
+rating_df   = pd.read_csv("./online_study/data/experiment_phase/rating.csv")
+user_df     = pd.read_csv("./online_study/data/experiment_phase/user.csv")
+video_df    = pd.read_csv("./online_study/data/experiment_phase/video.csv")
+behavior_df = pd.read_csv("./online_study/data/experiment_phase/behavior.csv")
 
 db_connection = DB_connection()
 db_connection.save_table_in_db(rating_df,'rating')

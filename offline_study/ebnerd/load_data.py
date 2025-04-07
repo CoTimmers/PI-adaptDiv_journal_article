@@ -6,16 +6,16 @@ from DB_connection import db_connection
 
 
 # Load data 
-local_path =  os.getenv("LOCAL_PATH")
+print('Load data for ebnerd database')
 
 
-articles            = pd.read_csv(local_path + "/offline_study/ebnerd/data/articles.csv")
-behaviors           = pd.read_csv(local_path + "/offline_study/ebnerd/data/behaviors.csv")
-parameters_adapt    = pd.read_csv(local_path + "/offline_study/ebnerd/data/parameters_adapt.csv")
-parameters_mmr      = pd.read_csv(local_path + "/offline_study/ebnerd/data/parameters_mmr.csv")
-simulated_behaviors = pd.read_csv(local_path + "/offline_study/ebnerd/data/simulated_behaviors.csv")
-UserItem_Matrix     = pd.read_csv(local_path + "/offline_study/ebnerd/data/UserItem_Matrix.csv")
-users               = pd.read_csv(local_path + "/offline_study/ebnerd/data/users.csv")
+articles            = pd.read_csv("./offline_study/ebnerd/data/articles.csv")
+behaviors           = pd.read_csv("./offline_study/ebnerd/data/behaviors.csv")
+parameters_adapt    = pd.read_csv("./offline_study/ebnerd/data/parameters_adapt.csv")
+parameters_mmr      = pd.read_csv("./offline_study/ebnerd/data/parameters_mmr.csv")
+simulated_behaviors = pd.read_csv("./offline_study/ebnerd/data/simulated_behaviors.csv")
+UserItem_Matrix     = pd.read_csv("./offline_study/ebnerd/data/UserItem_Matrix.csv")
+users               = pd.read_csv("./offline_study/ebnerd/data/users.csv")
 
 #users['user_id'] = users['user_id'].astype(int)
 

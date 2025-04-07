@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  load_data:
+    build: .
+    command: sh -c "python /app/offline_study/ebnerd/load_data.py && python /app/offline_study/mind/load_data.py && python /app/online_study/load_data.py" 
+    volumes:
+      - ./offline_study/ebnerd/data:/app/offline_study/ebnerd/data
+      - ./offline_study/mind/data:/app/offline_study/mind/data
+      - ./online_study/data:/app/online_study/data
+
+
+
+
+
+
+

@@ -12,7 +12,7 @@ local_path =  os.getenv("LOCAL_PATH")
 
 class DB_connection():
     def __init__(self):
-        self.connection = sqlite3.connect( local_path+ "/offline_study/ebnerd/data/database.db", timeout=10)
+        self.connection = sqlite3.connect( "./offline_study/ebnerd/data/database.db", timeout=10)
     
     def select(self,query):
         return pd.read_sql_query(query, self.connection)
