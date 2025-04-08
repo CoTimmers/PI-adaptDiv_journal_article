@@ -15,7 +15,7 @@ This repo aim to reproduce all results present in the article "PI-adaptDiv: an a
      docker-compose up load_data
      ```
 ## Run notebooks to reproduce results
-  This can be done trough the notebook service :
+  1. This can be done through the notebook service :
      ```
      docker-compose up notebook
      ```
