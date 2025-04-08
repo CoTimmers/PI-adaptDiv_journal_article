@@ -1,1 +1,2 @@
-# PI-adaptDiv_journal_article
+# PI-adaptDiv journal article
+This repo aim to reproduce all results present in the article "PI-adaptDiv: an adaptive algorithm to prevent and escape online filter bubbles journal article". All results are present in the different notebooks. Further this repo enables also to make new simulations of user interactions for EB-NeRD (https://dl.acm.org/doi/10.1145/3687151.3687152) and MIND datasets for the four different recommendation algorithms presented in the paper
