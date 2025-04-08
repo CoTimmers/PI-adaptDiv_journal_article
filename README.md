@@ -40,7 +40,11 @@ This repo aim to reproduce all results present in the article "PI-adaptDiv: an a
           K_p = 10 # Change this value to test different K_p values
           run_adaptative_simulations_for_active_users(K_p)
      ```
-  3. Run the run_new_simulations service :
+  3. Save changes and rebuild :
+     ```
+     docker-compose build
+     ```
+  4. Run the run_new_simulations service :
      ```
      docker-compose up run_new_simulations_ebnerd
      docker-compose up run_new_simulations_mind
