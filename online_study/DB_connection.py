@@ -11,7 +11,13 @@ import pandas as pd
 class DB_connection():
 
     def __init__(self):
-        self.connection = sqlite3.connect( "./online_study/data/experiment_phase/"+"database.db", check_same_thread=False)
+        project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
+
+        db_path = os.path.join(
+            project_root,
+            "online_study", "data","experiment_phase", "database.db"
+        )
+        self.connection = sqlite3.connect(db_path)
 
     def save_table_in_db(self,df,table_name):
         df.to_sql(table_name,self.connection, if_exists='replace',index=False)

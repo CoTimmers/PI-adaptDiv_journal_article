@@ -10,7 +10,13 @@ local_path =  os.getenv("LOCAL_PATH")
 
 class DB_connection():
     def __init__(self):
-        self.connection = sqlite3.connect( "./offline_study/mind/data/database.db", timeout=10)
+        project_root = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", ".."))
+        
+        db_path = os.path.join(
+            project_root,
+            "offline_study", "mind", "data", "database.db"
+        )
+        self.connection = sqlite3.connect( db_path, timeout=10)
     
     def select(self,query):
         return pd.read_sql_query(query, self.connection)

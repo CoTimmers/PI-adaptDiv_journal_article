@@ -6,7 +6,18 @@ services:
     volumes:
       - ./offline_study/ebnerd/data:/app/offline_study/ebnerd/data
       - ./offline_study/mind/data:/app/offline_study/mind/data
-      - ./online_study/data:/app/online_study/data
+      - ./online_study/data/experiment_phase:/app/online_study/data/experiment_phase
+  notebook:
+    build: .
+    ports:
+      - "8888:8888"
+    working_dir: /app
+    command: jupyter notebook --ip=0.0.0.0 --port=8888 --allow-root
+    volumes:
+      - .:/app
+      - ./offline_study/ebnerd/data:/app/offline_study/ebnerd/data
+      - ./offline_study/mind/data:/app/offline_study/mind/data
+      - ./online_study/data/experiment_phase:/app/online_study/data/experiment_phase
 
 
 
