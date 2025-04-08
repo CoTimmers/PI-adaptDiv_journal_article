@@ -18,7 +18,19 @@ services:
       - ./offline_study/ebnerd/data:/app/offline_study/ebnerd/data
       - ./offline_study/mind/data:/app/offline_study/mind/data
       - ./online_study/data/experiment_phase:/app/online_study/data/experiment_phase
-
+   
+  
+  run_new_simulations_ebnerd:
+    build: .
+    command: python /app/offline_study/ebnerd/run_massive_simulations.py
+    volumes:
+      - ./offline_study/ebnerd/data:/app/offline_study/ebnerd/data
+     
+  run_new_simulations_mind:
+    build: .
+    command: python /app/offline_study/mind/run_massive_simulations.py
+    volumes:
+      - ./offline_study/mind/data:/app/offline_study/mind/data
 
 
 

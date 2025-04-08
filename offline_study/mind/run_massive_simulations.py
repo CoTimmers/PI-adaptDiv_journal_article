@@ -264,7 +264,21 @@ def run_mmr_expected_div_change_simulations_for_active_users(lambda_):
             }
             db_connection.add_line_in_simulated_behaviors_table(data_point)
 
-#run_baseline_simulations_for_active_users()
-#run_adaptative_simulations_for_active_users(10)
-#run_mmr_simulations_for_active_users(0.5)
-run_mmr_expected_div_change_simulations_for_active_users(0.5)
+print("Run new simulations for mind dataset")
+run_baseline_simulations = False  # Change this to True to run the baseline simulations
+run_mmr_simulations = False # Change this to True to run the MMR simulations
+run_mmr_expected_div_change_simulations = False # Change this to True to run the MMR expected diversity change simulations
+run_adaptative_simulations = False # Change this to True to run the adaptive simulations
+
+if run_baseline_simulations:
+    run_baseline_simulations_for_active_users()
+if run_mmr_simulations:
+    lambda_ = 0.7 # Change this value to test different lambda values
+    run_mmr_simulations_for_active_users(lambda_)
+if run_mmr_expected_div_change_simulations:
+    lambda_ = 0.9 # Change this value to test different lambda values
+    run_mmr_expected_div_change_simulations_for_active_users(lambda_)
+if run_adaptative_simulations:
+    K_p = 10 # Change this value to test different K_p values
+    run_adaptative_simulations_for_active_users(K_p)
+
