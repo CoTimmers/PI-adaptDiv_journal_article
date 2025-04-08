@@ -43,6 +43,6 @@ This repo aim to reproduce all results present in the article "PI-adaptDiv: an a
   3. Run the run_new_simulations service :
      ```
      docker-compose up run_new_simulations_ebnerd
-     docker-compose up run_new_simulations_ebnerd
+     docker-compose up run_new_simulations_mind
      ```
 
