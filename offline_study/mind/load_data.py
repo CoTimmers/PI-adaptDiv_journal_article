@@ -1,9 +1,6 @@
 import os
-from dotenv import load_dotenv
-load_dotenv
 
 import pandas as pd
-from tqdm import tqdm
 
 from DB_connection import DB_connection
 
