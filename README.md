@@ -302,4 +302,17 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
+## Citation
+
+```bash
+   @article{timmers2026pi,
+    title={PI-adaptDiv: an adaptive algorithm to prevent and escape online filter bubbles},
+    author={Timmers, Colin and Fouss, Fran{\c{c}}ois and Vande Kerckhove, Corentin},
+    journal={ACM Transactions on Recommender Systems},
+    year={2026},
+    publisher={ACM New York, NY}}
+```
+
+
+
 For more information, issues, or questions, please open an issue on GitHub.
